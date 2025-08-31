@@ -1,0 +1,492 @@
+{
+  "city": {
+    "name": "Busan",
+    "country": "KR",
+    "coord": {
+      "lat": 35.1796,
+      "lon": 129.0756
+    }
+  },
+  "list": [
+    {
+      "dt": 1754006400,
+      "main": {
+        "temp": 26.6,
+        "feels_like": 28.1,
+        "humidity": 60
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "cloudy"
+        }
+      ]
+    },
+    {
+      "dt": 1754092800,
+      "main": {
+        "temp": 27.8,
+        "feels_like": 29.3,
+        "humidity": 68
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "cloudy"
+        }
+      ]
+    },
+    {
+      "dt": 1754179200,
+      "main": {
+        "temp": 29.0,
+        "feels_like": 30.5,
+        "humidity": 76
+      },
+      "wind": {
+        "speed": 3.2
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1754265600,
+      "main": {
+        "temp": 28.9,
+        "feels_like": 30.4,
+        "humidity": 84
+      },
+      "wind": {
+        "speed": 3.8
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1754352000,
+      "main": {
+        "temp": 30.0,
+        "feels_like": 31.5,
+        "humidity": 92
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1754438400,
+      "main": {
+        "temp": 31.0,
+        "feels_like": 32.5,
+        "humidity": 60
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "hot"
+        }
+      ]
+    },
+    {
+      "dt": 1754524800,
+      "main": {
+        "temp": 30.7,
+        "feels_like": 32.2,
+        "humidity": 68
+      },
+      "wind": {
+        "speed": 3.2
+      },
+      "weather": [
+        {
+          "description": "hot"
+        }
+      ]
+    },
+    {
+      "dt": 1754611200,
+      "main": {
+        "temp": 31.5,
+        "feels_like": 33.0,
+        "humidity": 76
+      },
+      "wind": {
+        "speed": 3.8
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1754697600,
+      "main": {
+        "temp": 32.2,
+        "feels_like": 33.7,
+        "humidity": 84
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1754784000,
+      "main": {
+        "temp": 31.6,
+        "feels_like": 33.1,
+        "humidity": 92
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1754870400,
+      "main": {
+        "temp": 32.0,
+        "feels_like": 33.5,
+        "humidity": 60
+      },
+      "wind": {
+        "speed": 3.2
+      },
+      "weather": [
+        {
+          "description": "hot"
+        }
+      ]
+    },
+    {
+      "dt": 1754956800,
+      "main": {
+        "temp": 32.3,
+        "feels_like": 33.8,
+        "humidity": 68
+      },
+      "wind": {
+        "speed": 3.8
+      },
+      "weather": [
+        {
+          "description": "hot"
+        }
+      ]
+    },
+    {
+      "dt": 1755043200,
+      "main": {
+        "temp": 31.3,
+        "feels_like": 32.8,
+        "humidity": 76
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1755129600,
+      "main": {
+        "temp": 31.4,
+        "feels_like": 32.9,
+        "humidity": 84
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1755216000,
+      "main": {
+        "temp": 31.4,
+        "feels_like": 32.9,
+        "humidity": 92
+      },
+      "wind": {
+        "speed": 3.2
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1755302400,
+      "main": {
+        "temp": 30.0,
+        "feels_like": 31.5,
+        "humidity": 60
+      },
+      "wind": {
+        "speed": 3.8
+      },
+      "weather": [
+        {
+          "description": "hot"
+        }
+      ]
+    },
+    {
+      "dt": 1755388800,
+      "main": {
+        "temp": 29.8,
+        "feels_like": 31.3,
+        "humidity": 68
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "hot"
+        }
+      ]
+    },
+    {
+      "dt": 1755475200,
+      "main": {
+        "temp": 29.5,
+        "feels_like": 31.0,
+        "humidity": 76
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1755561600,
+      "main": {
+        "temp": 28.0,
+        "feels_like": 29.5,
+        "humidity": 84
+      },
+      "wind": {
+        "speed": 3.2
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1755648000,
+      "main": {
+        "temp": 27.6,
+        "feels_like": 29.1,
+        "humidity": 92
+      },
+      "wind": {
+        "speed": 3.8
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1755734400,
+      "main": {
+        "temp": 27.2,
+        "feels_like": 28.7,
+        "humidity": 60
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "cloudy"
+        }
+      ]
+    },
+    {
+      "dt": 1755820800,
+      "main": {
+        "temp": 25.6,
+        "feels_like": 27.1,
+        "humidity": 68
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "cloudy"
+        }
+      ]
+    },
+    {
+      "dt": 1755907200,
+      "main": {
+        "temp": 25.2,
+        "feels_like": 26.7,
+        "humidity": 76
+      },
+      "wind": {
+        "speed": 3.2
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1755993600,
+      "main": {
+        "temp": 24.9,
+        "feels_like": 26.4,
+        "humidity": 84
+      },
+      "wind": {
+        "speed": 3.8
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1756080000,
+      "main": {
+        "temp": 23.5,
+        "feels_like": 25.0,
+        "humidity": 92
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1756166400,
+      "main": {
+        "temp": 23.3,
+        "feels_like": 24.8,
+        "humidity": 60
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "cloudy"
+        }
+      ]
+    },
+    {
+      "dt": 1756252800,
+      "main": {
+        "temp": 23.2,
+        "feels_like": 24.7,
+        "humidity": 68
+      },
+      "wind": {
+        "speed": 3.2
+      },
+      "weather": [
+        {
+          "description": "cloudy"
+        }
+      ]
+    },
+    {
+      "dt": 1756339200,
+      "main": {
+        "temp": 22.0,
+        "feels_like": 23.5,
+        "humidity": 76
+      },
+      "wind": {
+        "speed": 3.8
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1756425600,
+      "main": {
+        "temp": 22.2,
+        "feels_like": 23.7,
+        "humidity": 84
+      },
+      "wind": {
+        "speed": 2.0
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    },
+    {
+      "dt": 1756512000,
+      "main": {
+        "temp": 22.4,
+        "feels_like": 23.9,
+        "humidity": 92
+      },
+      "wind": {
+        "speed": 2.6
+      },
+      "weather": [
+        {
+          "description": "humid"
+        }
+      ]
+    }
+  ]
+}
