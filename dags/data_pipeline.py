@@ -1,7 +1,16 @@
+import sys
+sys.path.append("/opt/project")
+
 from datetime import datetime, timedelta
 
-from utils.data_utils import load_weather_data, choose_initial_or_daily
-# from utils.path import 
+from utils.data_utils import (
+        load_weather_data, 
+        choose_initial_or_daily, 
+        prepare_init_files, 
+        save_raw_to_db_from_csv,
+        save_today_csv_to_db
+)
+from utils.path import TMP_DIR
 
 from airflow import DAG
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
@@ -24,18 +33,19 @@ with DAG(
             python_callable = choose_initial_or_daily,
         )
 
-        prepare_init_files = PythonOperator(
+        prepare_init_csv = PythonOperator(
             task_id="prepare_init_files",
-            python_callable=_prepare_init_files,
+            python_callable=prepare_init_files,
         )
         
-        initial_load = PythonOperator(
-            task_id="initial_load",
-            python_callable=save_raw_to_db,
-            op_kwargs={
-                "date_dir": INIT_DIR,   # data/init 안의 *_forecast.json / *_current.json 사용
-                "dsn": PG_DSN,
-            },
+        save_to_db = PythonOperator(
+            task_id="save_raw_to_db",
+            python_callable=lambda **ctx: save_raw_to_db_from_csv(
+                csv_path=ctx["ti"].xcom_pull(task_ids="prepare_init_files"),
+                postgres_conn_id="postgres",
+                source="bootstrap",
+                kind="forecast",
+            ),
         )
 
         skip_init = EmptyOperator(task_id="skip_init")
@@ -49,7 +59,7 @@ with DAG(
             task_id="daily_ingest",
             python_callable=load_weather_data,
             op_kwargs={
-                "cities_yaml": str(path.CITIES_YAML),
+                "cities_yaml": "Seoul",
                 "save_tmp_dir": TMP_DIR,
                 "archive": False,           # 공간 아끼기 (원하면 True로 병행 아카이브)
                 "lang": "en",
@@ -59,16 +69,15 @@ with DAG(
         )
         
         save_today_to_db = PythonOperator(
-            task_id="save_raw_to_db",
-            python_callable=save_raw_to_db,
-            op_kwargs={
-                "raw_root": TMP_DIR,        # tmp에 저장된 *_current/_forecast.json 읽어 DB로
-                "dsn": PG_DSN,
-            },
+            task_id="save_today_to_db",
+            python_callable=lambda **ctx: save_today_csv_to_db(
+                csv_path=ctx["ti"].xcom_pull(task_ids="build_daily_csv"),  # ← CSV 만든 태스크 ID로 교체
+                postgres_conn_id="postgres",
+            ),
         )
 
 
-branch >> [prepare_init_files, skip_init]
-prepare_init_files >> initial_load >> join_init_or_skip
+branch >> [prepare_init_csv, skip_init]
+prepare_init_csv  >> save_to_db >> join_init_or_skip
 skip_init >> join_init_or_skip
 join_init_or_skip >> daily_ingest >> save_today_to_db
