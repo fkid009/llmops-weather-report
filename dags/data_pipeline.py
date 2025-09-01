@@ -1,36 +1,15 @@
-import os, psycopg2
 from datetime import datetime, timedelta
 
-# from utils.data_utils import 
+from utils.data_utils import load_weather_data, choose_initial_or_daily
 # from utils.path import 
 
 from airflow import DAG
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.providers.common.sql.sensors.sql import SqlSensor
 from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.operators.empty import EmptyOperator
+from airflow.utils.trigger_rule import TriggerRule
 
-PG_DSN   = "dbname=postgres user=postgres password=password1234 host=db port=5432"
-
-def _choose_initial_or_daily():
-    """
-    weather_raw 테이블이 없거나, 행이 0개면 'initial_load'로, 있으면 'daily_ingest'로 분기.
-    """
-    conn = psycopg2.connect(PG_DSN)
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT EXISTS (
-            SELECT 1 FROM information_schema.tables
-            WHERE table_schema='public' AND table_name='weather_raw'
-        );
-    """)
-    has_table = cur.fetchone()[0]
-    is_empty = True
-    if has_table:
-        cur.execute("SELECT EXISTS (SELECT 1 FROM weather_raw);")
-        has_rows = cur.fetchone()[0]
-        is_empty = not has_rows
-    cur.close(); conn.close()
-    return "initial_load" if is_empty else "daily_ingest"
 
 with DAG(
         "data_pipeline",
@@ -42,7 +21,7 @@ with DAG(
 
         branch = BranchPythonOperator(
             task_id="branch_initial_or_daily",
-            python_callable=_choose_initial_or_daily,
+            python_callable = choose_initial_or_daily,
         )
 
         prepare_init_files = PythonOperator(
@@ -57,6 +36,13 @@ with DAG(
                 "date_dir": INIT_DIR,   # data/init 안의 *_forecast.json / *_current.json 사용
                 "dsn": PG_DSN,
             },
+        )
+
+        skip_init = EmptyOperator(task_id="skip_init")
+
+        join_init_or_skip = EmptyOperator(
+            task_id="join_init_or_skip",
+            trigger_rule=TriggerRule.NONE_FAILED_MIN_ONE_SUCCESS,
         )
         
         daily_ingest = PythonOperator(
@@ -82,5 +68,7 @@ with DAG(
         )
 
 
-branch >> prepare_init_files >> initial_load
-branch >> daily_ingest >> save_today_to_db
+branch >> [prepare_init_files, skip_init]
+prepare_init_files >> initial_load >> join_init_or_skip
+skip_init >> join_init_or_skip
+join_init_or_skip >> daily_ingest >> save_today_to_db
