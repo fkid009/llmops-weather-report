@@ -8,7 +8,8 @@ from utils.data_utils import (
         choose_initial_or_daily, 
         prepare_init_files, 
         save_raw_to_db_from_csv,
-        save_today_csv_to_db
+        save_today_csv_to_db,
+        build_today_csv_from_tmp
 )
 from utils.path import TMP_DIR
 
@@ -67,6 +68,12 @@ with DAG(
                 "include_forecast": True,
             },
         )
+
+        build_daily_csv = PythonOperator(
+            task_id="build_daily_csv",
+            python_callable=build_today_csv_from_tmp,
+            op_kwargs={"tmp_dir": TMP_DIR},
+        )
         
         save_today_to_db = PythonOperator(
             task_id="save_today_to_db",
@@ -80,4 +87,4 @@ with DAG(
 branch >> [prepare_init_csv, skip_init]
 prepare_init_csv  >> save_to_db >> join_init_or_skip
 skip_init >> join_init_or_skip
-join_init_or_skip >> daily_ingest >> save_today_to_db
+join_init_or_skip >> daily_ingest >> build_daily_csv >> save_today_to_db
